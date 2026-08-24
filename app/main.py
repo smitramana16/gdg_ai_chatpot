@@ -2,6 +2,7 @@ import os
 import re
 from typing import Dict, Any, List, Optional
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -12,6 +13,15 @@ from app.kb_engine import KnowledgeEngine
 from app.agent_engine import AgentEngine
 
 app = FastAPI(title="GDG Club FAQ Assistant & Dashboard", version="3.0.0")
+
+# Enable CORS for file:// and cross-origin browser requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 STATIC_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
 os.makedirs(STATIC_DIR, exist_ok=True)
