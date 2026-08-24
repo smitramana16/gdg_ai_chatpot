@@ -79,7 +79,7 @@ my first ml project/
    ```
 
 3. **Open Web Interface**:
-   Navigate to **[http://localhost:8000](http://localhost:8000)** in your browser.
+   Navigate to **[https://gdg-ai-chatpot.vercel.app/](https://gdg-ai-chatpot.vercel.app/)** in your browser.
 
 ---
 
