@@ -4,6 +4,22 @@ An AI-powered conversational chatbot and real-time analytics dashboard built for
 
 ---
 
+## 💻 Run on Another PC (1-Click Setup)
+
+To run this project on any Windows computer without manually executing multiple terminal commands:
+
+1. **Download / Clone Project**:
+   ```bash
+   git clone https://github.com/smitramana16/gdg_ai_chatpot.git
+   cd gdg_ai_chatpot
+   ```
+2. **Double-Click `start.bat`**:
+   - Simply double-click the **`start.bat`** file in the project folder.
+3. **Application Opens & Runs**:
+   - `start.bat` automatically creates a virtual environment, installs all Python dependencies from `requirements.txt`, launches the backend server, and opens your browser at **http://localhost:8000**.
+
+---
+
 ## 🌟 Key Features
 
 ### 1. 🤖 Grounded FAQ Chatbot
@@ -39,7 +55,7 @@ An AI-powered conversational chatbot and real-time analytics dashboard built for
 my first ml project/
 ├── app/
 │   ├── __init__.py
-│   ├── main.py                  # FastAPI REST API & static routing
+│   ├── main.py                  # FastAPI REST API & CORS enabled static routing
 │   ├── kb_engine.py             # Grounded RAG matcher, date parser, hallucination guardrail
 │   ├── agent_engine.py          # Conversational agentic workflow state machine
 │   ├── intent_classifier.py     # Intent classification engine
@@ -51,42 +67,15 @@ my first ml project/
 │   ├── index.html               # Multi-tab Web Interface (Chatbot, Dashboard, Knowledge Base)
 │   ├── style.css                # Dark mode styling, glassmorphism, GDG neon accents
 │   └── app.js                   # Asynchronous API client, typing animations, Chart.js logic
+├── index.html                   # Root index HTML page for direct access
+├── start.bat                    # 1-Click Windows Launcher (Auto-venv, auto-pip, auto-browser)
+├── start.sh                     # 1-Click Linux/Mac Launcher
+├── requirements.txt             # Python dependencies
 ├── PRD.md                       # Product Requirements Document
 ├── run.py                       # Server entry point
 ├── test_10_required_questions.py# Test suite for 10 core questions
 └── test_action_workflow_memory.py # Test suite for memory & workflow state isolation
 ```
-
----
-
-## 🚀 1-Click Launcher (Zero Setup for Anyone!)
-
-On any computer, anyone can launch the full chatbot with **a single double-click**:
-
-- **Windows**: Double-click **`start.bat`**
-- **Mac / Linux**: Double-click **`start.sh`**
-
-*This automatically starts the Python backend server and opens `http://localhost:8000` in their default browser!*
-
----
-
-## 💻 Manual Execution
-
-If you prefer running via terminal:
-
-1. **Clone Repository**:
-   ```bash
-   git clone https://github.com/smitramana16/gdg_ai_chatpot.git
-   cd gdg_ai_chatpot
-   ```
-
-2. **Start Server**:
-   ```bash
-   python run.py
-   ```
-
-3. **Open Web Interface**:
-   Navigate to **[http://localhost:8000](http://localhost:8000)** in your browser.
 
 ---
 
