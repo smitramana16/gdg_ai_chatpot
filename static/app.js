@@ -3,6 +3,11 @@ let sessionState = {};
 let intentChartInstance = null;
 let groundingChartInstance = null;
 
+// Smart API Base URL: If opened as a local file (file://), fallback to http://127.0.0.1:8000
+const API_BASE = (window.location.protocol === "file:" || !window.location.host)
+  ? "http://127.0.0.1:8000"
+  : "";
+
 document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
   setupTabs();
@@ -122,12 +127,10 @@ function formatText(text) {
 
 async function sendMessageToBackend(userMessage) {
   showTypingIndicator();
-
-  // 600ms artificial delay for smooth natural feel
   const startTime = Date.now();
 
   try {
-    const res = await fetch("/api/chat", {
+    const res = await fetch(`${API_BASE}/api/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -164,7 +167,7 @@ async function sendMessageToBackend(userMessage) {
 
   } catch (err) {
     removeTypingIndicator();
-    appendMessage("bot", "⚠️ Error connecting to server.");
+    appendMessage("bot", "⚠️ Error connecting to server. Please make sure the Python server (python run.py) is running on http://127.0.0.1:8000!");
   }
 }
 
@@ -186,7 +189,7 @@ function resetInspector() {
 
 async function loadDashboardData() {
   try {
-    const statsRes = await fetch("/api/dashboard/stats");
+    const statsRes = await fetch(`${API_BASE}/api/dashboard/stats`);
     const stats = await statsRes.json();
 
     document.getElementById("kpi-total-chats").innerText = stats.total_chats || 0;
@@ -197,11 +200,11 @@ async function loadDashboardData() {
     renderIntentChart(stats.intent_counts || {});
     renderGroundingChart(stats.successful_queries || 0, stats.unanswered_queries || 0);
 
-    const actionsRes = await fetch("/api/dashboard/actions");
+    const actionsRes = await fetch(`${API_BASE}/api/dashboard/actions`);
     const actions = await actionsRes.json();
     renderActionsTable(actions.registrations || [], actions.feedback_entries || []);
 
-    const unansRes = await fetch("/api/dashboard/unanswered");
+    const unansRes = await fetch(`${API_BASE}/api/dashboard/unanswered`);
     const unanswered = await unansRes.json();
     renderUnansweredTable(unanswered || []);
 
@@ -324,7 +327,7 @@ function renderUnansweredTable(unanswered) {
 
 async function loadKnowledgeBase() {
   try {
-    const res = await fetch("/api/knowledge");
+    const res = await fetch(`${API_BASE}/api/knowledge`);
     const data = await res.json();
     const container = document.getElementById("kb-category-container");
     container.innerHTML = "";
