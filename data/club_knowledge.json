@@ -1,0 +1,42 @@
+{
+  "Introduction": "GDG On Campus is a community of 150+ tech enthusiasts. Founded in 2022. Organizes workshops, hackathons, and speaker sessions.",
+  "Teams": [
+    { "name": "AIML", "lead": "Rahul Sharma" },
+    { "name": "Web Dev", "lead": "Priya Patel" },
+    { "name": "App Dev", "lead": "Arjun Mehta" },
+    { "name": "Cloud", "lead": "Sneha Gupta" },
+    { "name": "Cybersecurity", "lead": "Vikram Singh" },
+    { "name": "Design", "lead": "Ananya Reddy" }
+  ],
+  "Events": [
+    { "title": "Intro to GenAI Workshop", "date": "Sept 15, 2025", "status": "Upcoming" },
+    { "title": "HackFest 2025", "date": "Oct 10, 2025", "status": "Upcoming" },
+    { "title": "Cloud Study Jam", "date": "Sept 20, 2025", "status": "Upcoming" },
+    { "title": "Flutter Forward", "date": "Aug 30, 2025", "status": "Completed" },
+    { "title": "CyberCTF Challenge", "date": "Nov 5, 2025", "status": "Upcoming" },
+    { "title": "Design Thinking Bootcamp", "date": "Sept 25, 2025", "status": "Upcoming" }
+  ],
+  "Recruitment": {
+    "window": "Sept 1–15, 2025",
+    "eligibility": "1st to 3rd year",
+    "process": "Application Form → Technical Assessment (1 week) → Interview (15 min) → Results (1 week) → Onboarding (2 weeks)"
+  },
+  "Rules": [
+    "Minimum 2 events/month to stay active.",
+    "Inactive for 2 months = alumni status.",
+    "Team switching once per semester.",
+    "At least 1 project contribution per semester."
+  ],
+  "Contacts": [
+    { "role": "President", "name": "Aditya Kumar", "email": "president@gdgoncampus.com" },
+    { "role": "VP", "name": "Meera Joshi" },
+    { "role": "Tech Head", "name": "Rohan Desai" },
+    { "role": "General", "email": "info@gdgoncampus.com" }
+  ],
+  "Achievements": [
+    "Best Community Award at DevFest 2024",
+    "12 open-source projects (500+ GitHub stars)",
+    "25+ workshops in 2024–25",
+    "Partnerships with 3 college clubs"
+  ]
+}

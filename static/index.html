@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDG On Campus — AI Assistant & Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="gdg-dots">
+          <span class="dot red"></span>
+          <span class="dot blue"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <h1>GDG On Campus <span>AI Assistant</span></h1>
+      </div>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-tab="chat-tab">
+          <i data-lucide="message-square"></i> Chatbot
+        </button>
+        <button class="tab-btn" data-tab="dashboard-tab">
+          <i data-lucide="bar-chart-3"></i> Admin Dashboard
+        </button>
+        <button class="tab-btn" data-tab="knowledge-tab">
+          <i data-lucide="database"></i> Knowledge Base
+        </button>
+      </nav>
+      <div class="status-badge">
+        <span class="pulse-online"></span> Grounded System Active
+      </div>
+    </header>
+
+    <main class="main-content">
+      
+      <!-- TAB 1: Chatbot -->
+      <section id="chat-tab" class="tab-content active">
+        <div class="chat-layout">
+          
+          <div class="chat-card">
+            <div class="chat-header">
+              <div class="agent-info">
+                <div class="avatar-glow">🤖</div>
+                <div>
+                  <h3>Club FAQ & Agentic Assistant</h3>
+                  <p>Grounded Q&A • Multi-turn Memory • Source Citation</p>
+                </div>
+              </div>
+              <button id="clear-chat" class="icon-btn" title="New Chat / Clear Session">
+                <i data-lucide="plus-circle"></i>
+                <span style="font-size:0.8rem; margin-left:4px;">New Chat</span>
+              </button>
+            </div>
+
+            <div id="chat-messages" class="chat-messages">
+              <div class="message bot-message">
+                <div class="avatar">🤖</div>
+                <div class="message-content">
+                  <p>Hello! 👋 Welcome to <strong>GDG On Campus AI Assistant</strong>.</p>
+                  <p>I can answer questions grounded strictly in our official club info (Introduction, Teams, Events, Recruitment, Rules, Contacts, Achievements) or help you <strong>Register for Events</strong>, <strong>Submit Feedback</strong>, or <strong>Check Application Status</strong>!</p>
+                  <div class="meta-row">
+                    <span class="badge intent-badge">GREETING</span>
+                    <span class="badge conf-badge high">99% Grounded</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Chips -->
+            <div class="quick-chips">
+              <button class="chip" onclick="sendQuickMessage('What teams are available?')">⚡ Available Teams</button>
+              <button class="chip" onclick="sendQuickMessage('Who leads AIML?')">🤖 Who leads AIML?</button>
+              <button class="chip" onclick="sendQuickMessage('What about Web Dev?')">🌐 What about Web Dev?</button>
+              <button class="chip" onclick="sendQuickMessage('Register me for GenAI Workshop')">🎟️ Register for GenAI Workshop</button>
+              <button class="chip" onclick="sendQuickMessage('What are the rules?')">📜 Rules</button>
+              <button class="chip" onclick="sendQuickMessage('Check status for APP-1001')">🔍 Check Status</button>
+            </div>
+
+            <!-- Input Area -->
+            <form id="chat-form" class="chat-input-area">
+              <input type="text" id="user-input" placeholder="Type a message or request an action..." autocomplete="off" required>
+              <button type="submit" class="send-btn">
+                <span>Send</span>
+                <i data-lucide="send"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Inspector Sidebar -->
+          <div class="inspector-card">
+            <h3><i data-lucide="cpu"></i> AI Inspector</h3>
+            <div class="inspector-section">
+              <label>Classified Intent</label>
+              <div id="insp-intent" class="insp-val">Waiting...</div>
+            </div>
+            <div class="inspector-section">
+              <label>Grounded Confidence</label>
+              <div class="confidence-bar-container">
+                <div id="insp-conf-bar" class="confidence-fill" style="width: 0%;"></div>
+              </div>
+              <div id="insp-conf-text" class="insp-subval">0%</div>
+            </div>
+            <div class="inspector-section">
+              <label>Dynamic Source Citation</label>
+              <div id="insp-source" class="insp-val muted">None</div>
+            </div>
+            <div class="inspector-section">
+              <label>Active Subject Context</label>
+              <div id="insp-subject" class="insp-val muted">General</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 2: Admin Dashboard -->
+      <section id="dashboard-tab" class="tab-content">
+        <div class="dashboard-grid">
+          
+          <div class="kpi-row">
+            <div class="kpi-card">
+              <div class="kpi-icon blue"><i data-lucide="message-square"></i></div>
+              <div>
+                <h4 id="kpi-total-chats">0</h4>
+                <p>Total Chats</p>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon green"><i data-lucide="check-circle-2"></i></div>
+              <div>
+                <h4 id="kpi-successful">0</h4>
+                <p>Grounded Answers</p>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon yellow"><i data-lucide="zap"></i></div>
+              <div>
+                <h4 id="kpi-actions">0</h4>
+                <p>Actions Completed</p>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon red"><i data-lucide="help-circle"></i></div>
+              <div>
+                <h4 id="kpi-unanswered">0</h4>
+                <p>Unanswered Queries</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="charts-row">
+            <div class="chart-card">
+              <h3><i data-lucide="pie-chart"></i> Intent Breakdown</h3>
+              <div class="chart-container">
+                <canvas id="intentChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <h3><i data-lucide="shield-check"></i> Quality & Grounding Stats</h3>
+              <div class="chart-container">
+                <canvas id="groundingChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Log Table -->
+          <div class="table-card">
+            <div class="card-header">
+              <h3><i data-lucide="clipboard-list"></i> Action Log (Registrations & Feedback)</h3>
+              <button class="btn-refresh" onclick="loadDashboardData()"><i data-lucide="refresh-cw"></i> Refresh</button>
+            </div>
+            <div class="table-wrapper">
+              <table id="registrations-table">
+                <thead>
+                  <tr>
+                    <th>Type / ID</th>
+                    <th>Name / Sender</th>
+                    <th>Email</th>
+                    <th>Details</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamic -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Unanswered Queries Table -->
+          <div class="table-card">
+            <div class="card-header">
+              <h3><i data-lucide="alert-triangle"></i> Unanswered Queries Queue</h3>
+            </div>
+            <div class="table-wrapper">
+              <table id="unanswered-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>User Question</th>
+                    <th>Confidence</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamic -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 3: Knowledge Base Browser -->
+      <section id="knowledge-tab" class="tab-content">
+        <div class="kb-browser-container">
+          <div class="kb-header">
+            <h2>Grounded Knowledge Base (7 Official Categories)</h2>
+            <p>Strictly inspected knowledge base entries available to the AI Assistant.</p>
+          </div>
+          <div id="kb-category-container" class="kb-category-grid">
+            <!-- Dynamic Category Cards -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

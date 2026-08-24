@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "total_chats": 74,
+    "successful_queries": 63,
+    "unanswered_queries": 11,
+    "actions_completed": 6,
+    "intent_counts": {
+      "GREETING": 3,
+      "FAQ": 22,
+      "EVENT_INQUIRY": 2,
+      "ACTION_REQUEST": 31,
+      "UNKNOWN": 11,
+      "MEMORY_QUERY": 5
+    }
+  },
+  "registrations": [
+    {
+      "ticket_id": "REG-982287",
+      "name": "Rahul Sharma",
+      "email": "rahul@example.com",
+      "year": "2nd Year",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 17:21:06"
+    },
+    {
+      "ticket_id": "REG-6E7AE8",
+      "name": "smit ramana",
+      "email": "smit@gamil.com",
+      "year": "2 yeaar",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 17:24:18"
+    },
+    {
+      "ticket_id": "REG-6CA37C",
+      "name": "Rahul Sharma",
+      "email": "rahul@example.com",
+      "year": "2nd Year",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 17:32:04"
+    },
+    {
+      "ticket_id": "REG-97B1E2",
+      "name": "Rahul Sharma",
+      "email": "rahul@example.com",
+      "year": "2nd Year",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 17:32:20"
+    },
+    {
+      "ticket_id": "REG-0C79B1",
+      "name": "smit ramana",
+      "email": "smit@gmail.com",
+      "year": "3",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 17:35:58"
+    },
+    {
+      "ticket_id": "REG-1C8619",
+      "name": "smit",
+      "email": "smitramana@gmail.com",
+      "year": "4",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 18:04:23"
+    },
+    {
+      "ticket_id": "REG-CEF8FC",
+      "name": "Ujjal",
+      "email": "smit@gmail.com",
+      "year": "4",
+      "event_title": "Intro to GenAI Workshop",
+      "timestamp": "2026-08-24 19:01:47"
+    }
+  ],
+  "feedback_entries": [],
+  "unanswered_log": [
+    {
+      "id": "e38a9c96",
+      "query": "what are doing for me",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 17:35:11"
+    },
+    {
+      "id": "b275e7b5",
+      "query": "When was the club founded?",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 17:49:20"
+    },
+    {
+      "id": "53e99425",
+      "query": "Which event is happening on September 20?",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 17:51:35"
+    },
+    {
+      "id": "fe133742",
+      "query": "How can I join the club?",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 17:52:16"
+    },
+    {
+      "id": "7fa00127",
+      "query": "gd",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 18:06:08"
+    },
+    {
+      "id": "3f302fcb",
+      "query": "xxx",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 18:06:14"
+    },
+    {
+      "id": "8b84f177",
+      "query": "qwsmit",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 18:06:19"
+    },
+    {
+      "id": "c50241ff",
+      "query": "name smafjkfj",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 18:13:01"
+    },
+    {
+      "id": "61e08234",
+      "query": "wow amwzing",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 18:13:27"
+    },
+    {
+      "id": "22841063",
+      "query": "good",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 18:13:32"
+    },
+    {
+      "id": "5963e032",
+      "query": "what is you gf",
+      "confidence": 20.0,
+      "timestamp": "2026-08-24 19:00:21"
+    }
+  ],
+  "applications": [
+    {
+      "id": "APP-1001",
+      "name": "Aarav Sharma",
+      "email": "aarav@example.com",
+      "stage": "Interview (15 min)"
+    },
+    {
+      "id": "APP-1002",
+      "name": "Diya Verma",
+      "email": "diya@example.com",
+      "stage": "Technical Assessment (1 week)"
+    }
+  ]
+}
