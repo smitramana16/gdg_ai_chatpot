@@ -1,14 +1,14 @@
 {
   "stats": {
-    "total_chats": 74,
-    "successful_queries": 63,
+    "total_chats": 86,
+    "successful_queries": 75,
     "unanswered_queries": 11,
-    "actions_completed": 6,
+    "actions_completed": 8,
     "intent_counts": {
       "GREETING": 3,
-      "FAQ": 22,
+      "FAQ": 30,
       "EVENT_INQUIRY": 2,
-      "ACTION_REQUEST": 31,
+      "ACTION_REQUEST": 35,
       "UNKNOWN": 11,
       "MEMORY_QUERY": 5
     }
