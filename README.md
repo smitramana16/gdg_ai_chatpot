@@ -59,13 +59,20 @@ my first ml project/
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 1-Click Launcher (Zero Setup for Anyone!)
 
-### Prerequisites
-- Python 3.10+
-- Installed packages: `fastapi`, `uvicorn`, `pydantic`
+On any computer, anyone can launch the full chatbot with **a single double-click**:
 
-### Installation & Execution
+- **Windows**: Double-click **`start.bat`**
+- **Mac / Linux**: Double-click **`start.sh`**
+
+*This automatically starts the Python backend server and opens `http://localhost:8000` in their default browser!*
+
+---
+
+## 💻 Manual Execution
+
+If you prefer running via terminal:
 
 1. **Clone Repository**:
    ```bash
@@ -79,7 +86,7 @@ my first ml project/
    ```
 
 3. **Open Web Interface**:
-   Navigate to **[https://gdg-ai-chatpot.vercel.app/](https://gdg-ai-chatpot.vercel.app/)** in your browser.
+   Navigate to **[http://localhost:8000](http://localhost:8000)** in your browser.
 
 ---
 
