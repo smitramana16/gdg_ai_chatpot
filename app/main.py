@@ -122,13 +122,18 @@ async def chat_endpoint(req: ChatRequest):
             }
         })
 
-    # 4. Handle Topic Switching (User asks FAQ / Event query while action was pending)
+    # 4. Handle Topic Switching (Only if user asks an explicit Q&A question while action was pending)
     current_action = action_state.get("action_type")
-    if current_action and intent in ["FAQ", "EVENT_INQUIRY", "GREETING"]:
-        action_state = {} # Topic switched -> clear/pause pending action
+    prompting_step = action_state.get("prompting")
+    
+    # Explicit Q&A question triggers topic switch
+    is_explicit_qa = any(w in user_msg.lower() for w in ["who leads", "who is", "when was", "what are the rules", "annual budget", "tell me about"])
+    
+    if current_action and is_explicit_qa:
+        action_state = {} # Clear pending action if user asks a distinct Q&A question
 
     # 5. Route to Action Engine ONLY if explicitly requested or answering pending action
-    if intent == "ACTION_REQUEST" or (action_state.get("action_type") and intent not in ["FAQ", "EVENT_INQUIRY"]):
+    if intent == "ACTION_REQUEST" or (current_action and not is_explicit_qa):
         action_res = agent_eng.process_action(intent, user_msg, action_state, user_memory)
         is_completed = action_res.get("action_complete", False)
         new_user_memory = action_res.get("user_memory", user_memory)
@@ -148,6 +153,7 @@ async def chat_endpoint(req: ChatRequest):
             "confidence": int(confidence * 100),
             "source": "Agentic Workflow Engine",
             "is_action": True,
+            "options": action_res.get("options", []),
             "session_state": {
                 "user_memory": new_user_memory,
                 "action_state": new_action_state
@@ -191,6 +197,7 @@ async def chat_endpoint(req: ChatRequest):
         "source": kb_res.get("source"),
         "is_action": False,
         "subject": kb_res.get("subject"),
+        "options": kb_res.get("options", []),
         "session_state": {
             "user_memory": user_memory,
             "action_state": {}

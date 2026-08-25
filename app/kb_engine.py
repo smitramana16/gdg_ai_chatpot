@@ -67,7 +67,7 @@ class KnowledgeEngine:
                     "subject": None
                 }
 
-        # 4. Context Resolution (STRICT - Only if query contains context reference)
+        # 4. Context Resolution
         resolved_query, context_subject = self._resolve_context(norm_query, session_history)
 
         vague_phrases = ["tell me about it", "what about it", "explain it", "details"]
@@ -84,7 +84,7 @@ class KnowledgeEngine:
         results = []
 
         # -------------------------------------------------------------
-        # Category: Introduction (Founding date, overview, history)
+        # Category: Introduction
         # -------------------------------------------------------------
         if any(w in q for w in ["founded", "found", "start", "started", "begin", "began", "established", "created", "history", "about gdg", "introduction", "what is gdg", "overview"]):
             intro = self.kb_data.get("Introduction", "")
@@ -137,7 +137,6 @@ class KnowledgeEngine:
         # -------------------------------------------------------------
         events = self.kb_data.get("Events", [])
         
-        # Check Date Matches (e.g. "September 20", "Sept 20", "20th")
         date_map = {
             "september 20": "Cloud Study Jam",
             "sept 20": "Cloud Study Jam",
@@ -184,11 +183,13 @@ class KnowledgeEngine:
         if ("event" in q or "workshop" in q or "hackathon" in q) and ("upcoming" in q or "all" in q or "list" in q or "what" in q or "schedule" in q):
             upcoming_events = [ev for ev in events if ev.get("status") == "Upcoming"]
             ev_str = "\n".join([f"• **{ev['title']}** — {ev['date']}" for ev in upcoming_events])
+            options = [f"Register for {ev['title']}" for ev in upcoming_events]
             results.append({
-                "answer": f"Upcoming GDG On Campus Events:\n\n{ev_str}",
+                "answer": f"Upcoming GDG On Campus Events:\n\n{ev_str}\n\nWould you like to register for any of these events?",
                 "source": "Events",
                 "confidence": 0.97,
-                "subject": "Events"
+                "subject": "Events",
+                "options": options
             })
 
         # -------------------------------------------------------------
@@ -204,7 +205,7 @@ class KnowledgeEngine:
             })
 
         # -------------------------------------------------------------
-        # Category: Contacts (President, VP, Tech Head, Emails)
+        # Category: Contacts
         # -------------------------------------------------------------
         contacts = self.kb_data.get("Contacts", [])
         if any(w in q for w in ["contact", "email", "president", "vp", "tech head", "reach"]):
@@ -268,10 +269,11 @@ class KnowledgeEngine:
                     "source": best["source"],
                     "confidence": best["confidence"],
                     "is_grounded": True,
-                    "subject": best["subject"]
+                    "subject": best["subject"],
+                    "options": best.get("options", [])
                 }
 
-        # Strict Fallback for Ungrounded Questions
+        # Strict Fallback
         return {
             "answer": "I have no idea about that. I can only answer questions grounded in our official GDG On Campus club information.",
             "source": "None",

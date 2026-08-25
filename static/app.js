@@ -76,6 +76,16 @@ function appendMessage(role, text, meta = {}) {
 
   let contentHtml = `<p>${formatText(text)}</p>`;
 
+  if (role === "bot" && meta.options && meta.options.length > 0) {
+    let optionsHtml = '<div class="message-options-grid">';
+    meta.options.forEach((opt) => {
+      const cleanOpt = opt.replace(/'/g, "\\'");
+      optionsHtml += `<button class="option-btn" onclick="sendQuickMessage('${cleanOpt}')">🎟️ ${opt}</button>`;
+    });
+    optionsHtml += '</div>';
+    contentHtml += optionsHtml;
+  }
+
   if (role === "bot" && (meta.intent || meta.confidence !== undefined)) {
     const confClass = meta.confidence >= 70 ? "high" : "low";
     contentHtml += `
@@ -153,7 +163,12 @@ async function sendMessageToBackend(userMessage) {
       sessionState = data.session_state || {};
       chatHistory.push({ role: "user", content: userMessage });
       chatHistory.push({ role: "assistant", content: data.answer, subject: data.subject || null });
-      appendMessage("bot", data.answer, { intent: data.intent, confidence: data.confidence, source: data.source });
+      appendMessage("bot", data.answer, {
+        intent: data.intent,
+        confidence: data.confidence,
+        source: data.source,
+        options: data.options || []
+      });
       updateInspector(data);
     }, delayNeeded);
 
@@ -164,7 +179,12 @@ async function sendMessageToBackend(userMessage) {
       const fallbackData = processOfflineQuery(userMessage);
       chatHistory.push({ role: "user", content: userMessage });
       chatHistory.push({ role: "assistant", content: fallbackData.answer });
-      appendMessage("bot", fallbackData.answer, { intent: fallbackData.intent, confidence: fallbackData.confidence, source: fallbackData.source });
+      appendMessage("bot", fallbackData.answer, {
+        intent: fallbackData.intent,
+        confidence: fallbackData.confidence,
+        source: fallbackData.source,
+        options: fallbackData.options || []
+      });
       updateInspector(fallbackData);
     }, 500);
   }
