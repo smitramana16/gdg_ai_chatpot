@@ -3,6 +3,9 @@
 An AI-powered conversational chatbot and real-time analytics dashboard built for **GDG On Campus**. Grounded strictly in official club information, it provides accurate Q&A, retains multi-turn context, classifies user intents, computes confidence scores, cites sources, executes agentic workflows (Event Registration, Feedback Submission, Status Checking), and provides an interactive admin dashboard.
 
 ---
+🚀 AI Chatbot Project
+🔗 Live Demo: https://gdg-ai-chatpot.vercel.app/
+Try it out and share your feedback! 🤖
 
 ## 💻 Run on Another PC (1-Click Setup)
 
